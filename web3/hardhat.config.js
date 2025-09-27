@@ -24,6 +24,12 @@ module.exports = {
         process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
       chainId: 17000,
     },
+     sepolia:{
+       type:"http",
+       chainType:"l1",
+       url:process.env.SEPOLIA_RPC_URL ||"",
+      accounts:process.env.PRIVATE_KEY !=undefined ? [process.env.PRIVATE_KEY]: [],
+     },
   },
   paths: {
     artifacts: "./artifacts",

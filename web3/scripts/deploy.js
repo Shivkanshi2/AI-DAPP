@@ -1,4 +1,6 @@
 const hre = require("hardhat");
+// SEPOLIA_RPC_URL="https://eth-sepolia.g.alchemy.com/v2/fka_9EWxoeRTNgKViEq1a"
+// PRIVATE_KEY="1c3ad3f1b07cc2352d81db36f0a84be74eceebf0e3ab404e1e21c8f3239db67a"
 
 async function main() {
   const [deployer] = await hre.ethers.getSigners();
