@@ -1,0 +1,57 @@
+## FINAL SOURCE CODE SETUP
+
+- Kindly follow the following instruction to setup the final source code, down below, there is Setup video you must watch till the end to understand what you have got and how to run the project
+
+# Setup Vudeo Link
+
+- URL: https://youtu.be/_8oXFzra-Es?si=aaLioMp07CmUKqFN
+
+📌 Timestamps
+00:00:00 ➤ Introduction
+00:00:26 ➤ Overview
+00:06:18 ➤ Features Demo
+00:13:45 ➤ Mobile Support
+00:15:12 ➤ Starter File
+00:16:31 ➤ Final Source Code
+00:28:04 ➤ Environment variables
+00:31:36 ➤ Installation
+00:35:23 ➤ Testing Live
+
+
+### MULTI-CURRENCY ICO DAPP
+
+```
+  PROJECT: MULTI-CURRENCY ICO DAPP
+  Code: https://www.theblockchaincoders.com/sourceCode/multi-currency-ico-dapp-using-next.js-solidity-and-wagmi
+  VIDEO: https://youtu.be/j8NO8ea5zVo?si=jCmvfXmpmefwjhO5
+```
+
+
+#### CHATGPT CLONE DAPP
+
+```
+  WATCH: CHATGPT CLONE DAPP
+  GET CODE : https://www.theblockchaincoders.com/sourceCode/build-chatgpt-web3-clone-dapp
+  SETUP: https://youtu.be/NOY44BGKd7U?si=N6wheM08Qvk0qms3
+  VIDEO: https://youtu.be/jlRq7Zegr-Q?si=4yxCoi5pJBlH7TcH
+```
+
+
+####  Hostinger Deployment Online
+
+```
+  WATCH: Hostinger
+  Get : Discount 75%
+  URL: https://www.hostg.xyz/aff_c?offer_id=6&aff_id=139422
+```
+
+
+## Support EmailID
+
+- EmailID: theblockchaincoders@gmail.com
+
+- If you have any question related to the project, kindly connect to this emailID: (theblockchaincoders@gmail.com) for any help, In the email kindly provide the follow details about the project and your purchased emailID Likes
+
+1. EmailID: Which you have used when you bought the code
+2. Share Project URL: 
+3. Screenshot / Screen recording of error : Error which you are facing
