@@ -1,14 +1,14 @@
 # Blockchain AI ChatGPT with Subscription SaaS
 
-🚀 Create & Deploy Blockchain AI ChatGPT with Subscription SaaS | Next.js + Solidity + Wagmi | Full DApp Project
+Deploy Blockchain AI ChatGPT with Subscription SaaS | Next.js + Solidity + Wagmi | Full DApp Project
 
 Instruction
 
 #
 
-In this exciting Web3 project, you’ll build and deploy a Blockchain-powered AI ChatGPT DApp with a Subscription-based SaaS model using Next.js, Solidity, and Wagmi Provider.
+In this exciting Web3 project, we’ll build and deploy a Blockchain-powered AI ChatGPT DApp with a Subscription-based SaaS model using Next.js, Solidity, and Wagmi Provider.
 
-🔍 What You’ll Build:
+🔍 What we’ll Build:
 ✅ An AI Chat interface powered by ChatGPT
 ✅ A subscription-based payment system using smart contracts
 ✅ Web3 wallet integration using Wagmi and RainbowKit

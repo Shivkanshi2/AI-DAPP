@@ -12,107 +12,219 @@ const Layout = ({ children }) => {
     return <ConnectWallet />;
   }
 
+  // INTERNAL STYLE OBJECTS
+  const styles = {
+    container: {
+      minHeight: "100vh",
+      background: "linear-gradient(to bottom right, #f8fafc, #e0f2fe, #e0e7ff)",
+      transition: "all 0.3s ease",
+      position: "relative",
+    },
+    mobileBackdrop: (open) => ({
+      position: "fixed",
+      inset: 0,
+      zIndex: 50,
+      opacity: open ? 1 : 0,
+      visibility: open ? "visible" : "hidden",
+      transition: "all 0.3s ease",
+    }),
+    mobileSidebarOverlay: {
+      position: "fixed",
+      inset: 0,
+      backgroundColor: "rgba(0,0,0,0.2)",
+      backdropFilter: "blur(8px)",
+    },
+    mobileSidebarContainer: (open) => ({
+      position: "fixed",
+      insetY: 0,
+      left: 0,
+      display: "flex",
+      width: "100%",
+      maxWidth: 320,
+      flexDirection: "column",
+      transform: open ? "translateX(0)" : "translateX(-100%)",
+      transition: "transform 0.3s ease-in-out",
+    }),
+    sidebarCard: {
+      position: "relative",
+      flexDirection: "column",
+      height: "100%",
+      backgroundColor: "rgba(255,255,255,0.95)",
+      backdropFilter: "blur(16px)",
+      borderRight: "1px solid rgba(209,213,219,0.5)",
+      boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+      display: "flex",
+    },
+    desktopSidebarContainer: {
+      position: "fixed",
+      insetY: 0,
+      display: "flex",
+      width: 256,
+      flexDirection: "column",
+      zIndex: 40,
+    },
+    sidebarGradientOverlay: {
+      position: "absolute",
+      inset: 0,
+      background: "linear-gradient(to bottom, rgba(59,130,246,0.05), transparent, rgba(129,140,248,0.05))",
+      pointerEvents: "none",
+    },
+    sidebarAccentBorder: {
+      position: "absolute",
+      top: 0,
+      left: 0,
+      width: 4,
+      height: "100%",
+      borderRadius: 9999,
+      background: "linear-gradient(to bottom, #3b82f6, #6366f1, #8b5cf6)",
+    },
+    mainContent: {
+      marginLeft: 256,
+      position: "relative",
+      flex: 1,
+      minHeight: "calc(100vh - 64px)",
+    },
+    animatedCircle: (top, left, size, fromColor, toColor, delay) => ({
+      position: "absolute",
+      width: size,
+      height: size,
+      borderRadius: "50%",
+      background: `radial-gradient(circle, ${fromColor} 0%, ${toColor} 100%)`,
+      filter: "blur(80px)",
+      animation: `pulse 6s ${delay || 0}s infinite alternate`,
+      top,
+      left,
+    }),
+    headerWrapper: {
+      position: "relative",
+      zIndex: 10,
+      backgroundColor: "rgba(255,255,255,0.7)",
+      backdropFilter: "blur(16px)",
+      borderBottom: "1px solid rgba(203,213,225,0.3)",
+      boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+    },
+    contentWrapper: {
+      position: "relative",
+      height: "100%",
+    },
+    gridOverlay: {
+      position: "fixed",
+      inset: 0,
+      pointerEvents: "none",
+      opacity: 0.015,
+      backgroundImage: `
+        linear-gradient(rgba(59,130,246,0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,0.5) 1px, transparent 1px)
+      `,
+      backgroundSize: "50px 50px",
+    },
+    floatingIndicator: {
+      position: "fixed",
+      bottom: 24,
+      right: 24,
+      zIndex: 30,
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      padding: "8px 12px",
+      backgroundColor: "rgba(255,255,255,0.8)",
+      backdropFilter: "blur(12px)",
+      borderRadius: 9999,
+      border: "1px solid rgba(203,213,225,0.5)",
+      boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
+    },
+    floatingDots: (color, delay) => ({
+      width: 8,
+      height: 8,
+      borderRadius: "50%",
+      backgroundColor: color,
+      animation: `pulse 1.5s ${delay || 0}s infinite`,
+    }),
+    mobileIndicatorWrapper: {
+      position: "fixed",
+      bottom: 16,
+      left: "50%",
+      transform: "translateX(-50%)",
+      zIndex: 30,
+      display: "flex",
+      alignItems: "center",
+      gap: 4,
+      padding: "4px 8px",
+      backgroundColor: "rgba(255,255,255,0.8)",
+      backdropFilter: "blur(12px)",
+      borderRadius: 9999,
+      border: "1px solid rgba(203,213,225,0.5)",
+      boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+    },
+    pulseKeyframes: `
+      @keyframes pulse {
+        0% { transform: translateY(0) scale(1); opacity: 0.4; }
+        50% { transform: translateY(-10px) scale(1.1); opacity: 0.6; }
+        100% { transform: translateY(0) scale(1); opacity: 0.4; }
+      }
+    `,
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-950 dark:via-blue-950 dark:to-indigo-950 transition-all duration-300">
-      {/* Mobile sidebar backdrop with enhanced blur */}
-      <div
-        className={`fixed inset-0 z-50 lg:hidden transition-all duration-300 ${
-          sidebarOpen ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
-      >
+    <div style={styles.container}>
+      <style>{styles.pulseKeyframes}</style>
+
+      {/* Mobile Sidebar */}
+      <div style={styles.mobileBackdrop(sidebarOpen)}>
         <div
-          className="fixed inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-sm"
+          style={styles.mobileSidebarOverlay}
           onClick={() => setSidebarOpen(false)}
         />
-
-        {/* Mobile sidebar container with slide animation */}
-        <div
-          className={`fixed inset-y-0 left-0 flex w-full max-w-xs flex-col transform transition-transform duration-300 ease-in-out ${
-            sidebarOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
-        >
-          <div className="relative flex flex-col h-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-r border-gray-200/50 dark:border-gray-700/50 shadow-2xl">
+        <div style={styles.mobileSidebarContainer(sidebarOpen)}>
+          <div style={styles.sidebarCard}>
             <Sidebar onClose={() => setSidebarOpen(false)} />
           </div>
         </div>
       </div>
 
-      {/* Desktop sidebar with enhanced styling */}
-      <div className="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-64 lg:flex-col z-40">
-        <div className="relative flex flex-col h-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl border-r border-gray-200/30 dark:border-gray-700/30 shadow-lg">
-          {/* Sidebar gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 via-transparent to-indigo-500/5 dark:from-blue-400/10 dark:via-transparent dark:to-indigo-400/10 pointer-events-none" />
-
-          {/* Blockchain-themed border accent */}
-          <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-blue-500 via-indigo-500 to-purple-500 rounded-r-full" />
-
-          <div className="relative z-10 h-full">
-            <Sidebar />
-          </div>
+      {/* Desktop Sidebar */}
+      <div style={styles.desktopSidebarContainer}>
+        <div style={{ ...styles.sidebarCard, position: "relative" }}>
+          <div style={styles.sidebarGradientOverlay} />
+          <div style={styles.sidebarAccentBorder} />
+          <Sidebar />
         </div>
       </div>
 
-      {/* Main content area with enhanced layout */}
-      <div className="lg:pl-64 relative">
-        {/* Animated background elements */}
-        <div className="fixed inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-400/20 to-indigo-600/20 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-tr from-purple-400/20 to-pink-600/20 rounded-full blur-3xl animate-pulse delay-1000" />
-        </div>
+      {/* Main Content */}
+      <div style={styles.mainContent}>
+        {/* Animated background */}
+        <div style={styles.animatedCircle("-160px", "60%", "320px", "rgba(59,130,246,0.2)", "rgba(79,70,229,0.2)", 0)} />
+        <div style={styles.animatedCircle("calc(100% - 320px)", "10%", "320px", "rgba(139,92,246,0.2)", "rgba(236,72,153,0.2)", 1)} />
 
-        {/* Header with enhanced styling */}
-        <div className="relative z-10 bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl border-b border-gray-200/30 dark:border-gray-700/30 shadow-sm">
+        {/* Header */}
+        <div style={styles.headerWrapper}>
           <Header onMenuClick={() => setSidebarOpen(true)} />
         </div>
 
-        {/* Main content container */}
-        <main className="relative z-10 flex-1 min-h-[calc(100vh-4rem)]">
-          <div className="h-full bg-gradient-to-b from-transparent via-white/30 to-transparent dark:via-gray-900/30">
-            {/* Content wrapper with subtle inner shadow */}
-            <div className="h-full relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-transparent to-indigo-50/30 dark:from-blue-950/30 dark:via-transparent dark:to-indigo-950/30 pointer-events-none" />
-              <div className="relative z-10 h-full">{children}</div>
-            </div>
-          </div>
+        {/* Content */}
+        <main style={{ flex: 1, position: "relative", minHeight: "calc(100vh - 64px)" }}>
+          <div style={styles.contentWrapper}>{children}</div>
         </main>
       </div>
 
-      {/* Floating blockchain network indicator */}
-      <div className="fixed bottom-6 right-6 z-30 hidden lg:block">
-        <div className="flex items-center space-x-2 px-3 py-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-full border border-gray-200/50 dark:border-gray-700/50 shadow-lg">
-          <div className="flex space-x-1">
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse delay-150" />
-            <div className="w-2 h-2 bg-purple-500 rounded-full animate-pulse delay-300" />
-          </div>
-          <span className="text-xs font-medium text-gray-600 dark:text-gray-300">
-            Connected
-          </span>
-        </div>
+      {/* Floating desktop indicator */}
+      <div style={styles.floatingIndicator}>
+        <div style={styles.floatingDots("green")}></div>
+        <div style={styles.floatingDots("blue", 0.15)}></div>
+        <div style={styles.floatingDots("purple", 0.3)}></div>
+        <span style={{ fontSize: 12, color: "#374151", fontWeight: 500 }}>Connected</span>
       </div>
 
-      {/* Enhanced mobile responsive indicators */}
-      <div className="lg:hidden fixed bottom-4 left-1/2 transform -translate-x-1/2 z-30">
-        <div className="flex items-center space-x-1 px-2 py-1 bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-full border border-gray-200/50 dark:border-gray-700/50 shadow-md">
-          <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-          <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse delay-150" />
-          <div className="w-1.5 h-1.5 bg-purple-500 rounded-full animate-pulse delay-300" />
-        </div>
+      {/* Floating mobile indicator */}
+      <div style={styles.mobileIndicatorWrapper}>
+        <div style={styles.floatingDots("green", 0)}></div>
+        <div style={styles.floatingDots("blue", 0.15)}></div>
+        <div style={styles.floatingDots("purple", 0.3)}></div>
       </div>
 
-      {/* Subtle grid pattern overlay */}
-      <div className="fixed inset-0 pointer-events-none opacity-[0.015] dark:opacity-[0.02]">
-        <div
-          className="w-full h-full"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(59, 130, 246, 0.5) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(59, 130, 246, 0.5) 1px, transparent 1px)
-            `,
-            backgroundSize: "50px 50px",
-          }}
-        />
-      </div>
+      {/* Grid overlay */}
+      <div style={styles.gridOverlay}></div>
     </div>
   );
 };
