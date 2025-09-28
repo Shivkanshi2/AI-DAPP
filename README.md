@@ -27,7 +27,7 @@ In this exciting Web3 project, you’ll build and deploy a Blockchain-powered AI
 - Hardhat
 - Tailwind CSS
 
-#Blockchain #ChatGPT #Nextjs #Solidity #Web3 #SaaS #AIChatbot #Wagmi #CryptoPayments #DAppProject
+#Blockchain #Nextjs #Solidity #Web3 #SaaS #AIChatbot #Wagmi #CryptoPayments #DAppProject
 
 ```
 
